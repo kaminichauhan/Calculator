@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+
+    <style>
+        body{
+            background-color: #284112;
+        }
+
+        #calculator{
+          width: auto;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: grid;
+            border: 5px solid red;
+            padding: 20px;
+            grid-template-columns: repeat(4, 40px);
+            grid-template-rows: repeat(5, 40px);
+            gap: 10px;
+            grid-template-areas: 
+            "result result result result"
+            "one two three add"
+            "four five six sub"
+            "seven eight nine mul"
+            "cancel zero equal divide";
+            justify-content: center;
+            background-color: white;
+        }
+        #calculator>div{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: rgba(139, 138, 138, 0.35) 0px 5px 15px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        #calculator>div:nth-child(1){
+           background-color: white;
+           grid-area: result;
+        }
+        #calculator>div:nth-child(2){
+            background-color: white;
+            grid-area: one;
+        }
+        #calculator>div:nth-child(3){
+            background-color: white;
+            grid-area: two;
+        }
+        #calculator>div:nth-child(4){
+            background-color: white;
+            grid-area: three;
+        }
+        #calculator>div:nth-child(5){
+            background-color: black;
+            color: white;
+            grid-area: add;
+        }
+        #calculator>div:nth-child(6){
+            background-color: white;
+            grid-area: four;
+        }
+        #calculator>div:nth-child(7){
+            background-color: white;
+            grid-area: five;
+        }
+        #calculator>div:nth-child(8){
+            background-color: white;
+            grid-area: six;
+        }
+        #calculator>div:nth-child(9){
+            background-color: black;
+            color: white;
+            grid-area: sub; 
+        }
+        #calculator>div:nth-child(10){
+            background-color: white;
+            grid-area: seven;
+        }
+        #calculator>div:nth-child(11){
+            background-color: white;
+            grid-area: eight;
+        }
+        #calculator>div:nth-child(12){
+            background-color: white;
+            grid-area: nine;
+        }
+        #calculator>div:nth-child(13){
+            background-color: black;
+            color: white;
+            grid-area: mul;
+        }
+        #calculator>div:nth-child(14){
+            background-color: red;
+            color: white;
+            grid-area: cancel;
+        }
+
+        #calculator>div:nth-child(15){
+            background-color: white;
+            grid-area: zero;
+        }
+        #calculator>div:nth-child(16){
+            background-color: black;
+            color: white;
+            grid-area: equal;
+        }
+        #calculator>div:nth-child(17){
+            background-color: black;
+            color: white;
+            grid-area: divide;
+        }
+        #result{
+            font-weight: bold;
+            font-size: 23px;
+        }
+        h1{
+            text-align: center;
+            font-size: 50px;
+            color: white;
+        }
+       
+
+    </style>
+
+</head>
+<body>
+    <h1>MASAI CALCULATOR</h1>
+
+    <div id="calculator">
+        <div id="result"></div>
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>+</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>-</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>*</div>
+        <div>C</div>
+        <div>0</div>
+        <div>=</div>
+        <div>/</div>
+    </div>
+    
+</body>
+</html>
+
+<script>
+
+    var allDivs = document.querySelectorAll("#calculator>div")
+
+    for(var i=0;i<allDivs.length;i++){
+        allDivs[i].addEventListener("click", calculate)
+    }
+
+    function calculate(){
+
+       var targetNumber = event.target.innerText
+
+        switch(targetNumber){
+
+           case "C":
+           document.querySelector("#result").innerText=""
+            break;
+            case "=":
+                var answer = eval(document.querySelector("#result").innerText)
+                console.log("Answer is: ", answer)
+                document.querySelector("#result").innerText = answer.toFixed(2)
+                break;
+            default:
+            document.querySelector("#result").innerText += targetNumber
+        }
+        
+    }
+
+</script>
